@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - "main"
+  workflow_dispatch: {}
 
 jobs:
   build:
@@ -40,7 +41,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/uma-etl-crawler/uma-etl-crawler:${{ env.DATE }}
+          tags: ghcr.io/${{ github.repository_owner }}/uma-etl-crawler:${{ env.DATE }}
 
       - name: Checkout infra repository
         uses: actions/checkout@v4
@@ -75,12 +76,12 @@ jobs:
 
           yq eval ".image.tag = \"$NEW_TAG\"" -i k8s/applications/etl/uma_etl_crawler/values-main.yaml
 
-          echo "--------------tag--------------------"
+          echo "tag"
           cat k8s/applications/etl/uma_etl_crawler/values-main.yaml
 
       - name: Commit and push changes
         run: |
-          cd genoius-infra
+          cd uma-infrastucture
           ls
           pwd
           git config --global user.name "Bot Updater"
