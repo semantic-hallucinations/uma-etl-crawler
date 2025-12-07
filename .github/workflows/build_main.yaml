@@ -23,7 +23,7 @@ jobs:
           password: ${{ secrets.TOKEN }}
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
+        uses: docker/setup-buildx-action@v2
 
       - name: Convert repository owner and name to lowercase
         id: vars
@@ -45,16 +45,16 @@ jobs:
       - name: Checkout infra repository
         uses: actions/checkout@v4
         with:
-          repository: semantic-hallucinations/genoius-infra
+          repository: semantic-hallucinations/uma-infrastructure
           token: ${{ secrets.TOKEN }}
-          path: genoius-infra
+          path: uma-infrastructure
           ref: master
 
       - name: Update image tag in values-main.yaml
         run: |
           ls
           echo "my infra"
-          cd genoius-infra
+          cd uma-infrastructure
           ls
 
           NEW_TAG="${{ env.DATE }}"
