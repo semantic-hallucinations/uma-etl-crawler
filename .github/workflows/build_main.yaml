@@ -81,7 +81,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          cd uma-infrastucture
+          cd uma-infrastructure
           ls
           pwd
           git config --global user.name "Bot Updater"
