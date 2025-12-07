@@ -49,7 +49,7 @@ jobs:
           repository: semantic-hallucinations/uma-infrastructure
           token: ${{ secrets.TOKEN }}
           path: uma-infrastructure
-          ref: master
+          ref: main
 
       - name: Update image tag in values-main.yaml
         run: |
